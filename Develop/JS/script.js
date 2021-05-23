@@ -1,17 +1,17 @@
 function createCallback( i ){
     return function(){
-      setItm();
+      setItm(i);
     }
   }
   
   $(document).ready(function(){
     SelectionCSS();
-    for(var i = 0; i < 10; i++) {
+    for(var i = 1; i < 10; i++) {
       $('#btn' + i).click( createCallback( i ));
     }
   });
 
-  // get current date to display on top a d Display it
+// get current date to display on top a d Display it
 var mDIsplay = moment().format("dddd MMMM Do")
 $("#currentDay").text(mDIsplay);
 
@@ -29,19 +29,32 @@ mString = m.format("YYYY-MM-DD hh:mm a")
 mNowString = mNow.format("YYYY-MM-DD hh:mm a")
 
 //Get local storage when page loads
+var hrTextArray = [];
+var day 
 var localStorageIni = localStorage.getItem("text");
+var localStorageIniDay = localStorage.getItem("date")
+
 // check if local storage exist, if not intialize it
-if (localStorageIni === null){
-  var hrTextArray = ["","","","","","","","","",""]
+if (localStorageIni === null || localStorageIniDay === null ){
+  hrTextArray = ["","","","","","","","","",""]
+  day = 0
 } else {
   // get local storage if it exists and convert to JSON
   hrTextArray = JSON.parse(localStorageIni)
-  // Loop throut to set data from localstorage to textArea field 
-  for(var i = 1; i < 10; i++) {
-    hrtxt = hrTextArray[i-1]
-    $('#txt' +i).text(hrtxt)
+  day= localStorageIniDay
+  if (day ===  moment().format("DDD")){
+    // Loop throut to set data from localstorage to textArea field 
+    for(var i = 1; i < 10; i++) {
+      hrtxt = hrTextArray[i-1]
+      $('#txt' +i).text(hrtxt)
+      }
+    } else {
+      // if different day then reset the storage
+      localStorage.setItem("date",day);
+      localStorage.removeItem("text");
+      location.reload();
+    }
   }
-}
 
 // CSS present, future and past backgound color selector 
 function SelectionCSS () {
@@ -71,14 +84,13 @@ function SelectionCSS () {
     }
 }
 
-// get values from textArea and set to local storage
-function setItm (){
-  for(var i = 1; i < 10; i++) {
-    hrTextArray[i-1] = $('#txt' +i).val()
-  }
+//get values from textArea and set to local storage
+function setItm (parI){
+  // for(var i = 1; i < 10; i++) {
+  //   hrTextArray[i-1] = $('#txt' +i).val()
+  // }
+  hrTextArray[parI-1] = $('#txt' +parI).val()
   localStorage.setItem("text",JSON.stringify(hrTextArray));
+  localStorage.setItem("date",moment().format("DDD"));
   location.reload(); //refresh page. Allows to udpate SelectionCSS
 }
-
-  
-  
