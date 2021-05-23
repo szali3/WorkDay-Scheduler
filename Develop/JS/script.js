@@ -43,6 +43,7 @@ if (localStorageIni === null || localStorageIniDay === null ){
   hrTextArray = JSON.parse(localStorageIni)
   day= localStorageIniDay
   if (day ===  moment().format("DDD")){
+    console.log("if "+day)
     // Loop throut to set data from localstorage to textArea field 
     for(var i = 1; i < 10; i++) {
       hrtxt = hrTextArray[i-1]
@@ -50,7 +51,8 @@ if (localStorageIni === null || localStorageIniDay === null ){
       }
     } else {
       // if different day then reset the storage
-      localStorage.setItem("date",day);
+      console.log("else "+day)
+      localStorage.setItem("date",moment().format("DDD"));
       localStorage.removeItem("text");
       location.reload();
     }
@@ -86,11 +88,9 @@ function SelectionCSS () {
 
 //get values from textArea and set to local storage
 function setItm (parI){
-  // for(var i = 1; i < 10; i++) {
-  //   hrTextArray[i-1] = $('#txt' +i).val()
-  // }
   hrTextArray[parI-1] = $('#txt' +parI).val()
   localStorage.setItem("text",JSON.stringify(hrTextArray));
   localStorage.setItem("date",moment().format("DDD"));
   location.reload(); //refresh page. Allows to udpate SelectionCSS
 }
+
