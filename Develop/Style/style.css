@@ -1,9 +1,11 @@
+/*used*/
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
 }
 
+/*used*/
 textarea{
   background: transparent;
   border: none;
@@ -13,6 +15,7 @@ textarea{
   padding: 10px;
 }
 
+/*used*/
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -25,38 +28,45 @@ textarea{
   white-space: pre-wrap;
 }
 
+/*used*/
 .time-block{
   text-align: center;
   border-radius: 15px;
 }
 
+/*used*/
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;;
 }
 
+/*used*/
 .hour {
   background-color: #ffffff;
   color: #000000;
   border-top: 1px dashed #000000;
 }
 
+/*used*/
 .past {
   background-color: #d3d3d3;
   color: white;
 }
 
+/*used*/
 .present {
   background-color: #ff6961;
   color: white;
 }
 
+/*used*/
 .future {
   background-color: #77dd77;
   color: white;
 }
 
+/*used*/
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
@@ -65,6 +75,7 @@ textarea{
   color: white;
 }
 
+/*used*/
 .saveBtn i:hover {
   font-size: 20px;
   transition: all .3s ease-in-out;
